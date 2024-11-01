@@ -1,5 +1,8 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:movie_apps/api_service/api.dart';
 import 'package:movie_apps/auth/login_page.dart';
+import 'package:toastification/toastification.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -10,6 +13,10 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  final dio = Dio();
+
+  bool isloading = false;
+
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController emailController = TextEditingController();
@@ -99,18 +106,65 @@ class _RegisterPageState extends State<RegisterPage> {
             const SizedBox(
               height: 16,
             ),
-            ElevatedButton(
-              onPressed: () {},
-              style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blueGrey,
-                  minimumSize: const Size.fromHeight(50)),
-              child: const Text(
-                "Register",
-                style: TextStyle(
-                  color: Colors.white,
-                ),
-              ),
-            ),
+            isloading
+                ? const CircularProgressIndicator()
+                : ElevatedButton(
+                    onPressed: () {
+                      if (usernameController.text.isEmpty &&
+                          usernameController.text == '') {
+                        toastification.show(
+                            context: context,
+                            title: const Text("Username tidak boleh kosong"),
+                            autoCloseDuration: const Duration(seconds: 3),
+                            type: ToastificationType.error,
+                            style: ToastificationStyle.fillColored);
+                      } else if (fullnameController.text.isEmpty &&
+                          fullnameController.text == '') {
+                        toastification.show(
+                            context: context,
+                            title: const Text("Nama tidak boleh kosong"),
+                            autoCloseDuration: const Duration(seconds: 3),
+                            type: ToastificationType.error,
+                            style: ToastificationStyle.fillColored);
+                      } else if (emailController.text.isEmpty &&
+                          emailController.text == '') {
+                        toastification.show(
+                            context: context,
+                            title: const Text("Email tidak boleh kosong"),
+                            autoCloseDuration: const Duration(seconds: 3),
+                            type: ToastificationType.error,
+                            style: ToastificationStyle.fillColored);
+                      } else if (passwordController.text.isEmpty &&
+                          passwordController.text == '') {
+                        toastification.show(
+                            context: context,
+                            title: const Text("Password tidak boleh kosong"),
+                            autoCloseDuration: const Duration(seconds: 3),
+                            type: ToastificationType.error,
+                            style: ToastificationStyle.fillColored);
+                      } else if (phoneController.text.isEmpty &&
+                          phoneController.text == '') {
+                        toastification.show(
+                            context: context,
+                            title:
+                                const Text("Nomor Telepon tidak boleh kosong"),
+                            autoCloseDuration: const Duration(seconds: 3),
+                            type: ToastificationType.error,
+                            style: ToastificationStyle.fillColored);
+                      } else {
+                        registerResponse();
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.blueGrey,
+                        minimumSize: const Size.fromHeight(50)),
+                    child: const Text(
+                      "Register",
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
             const SizedBox(
               height: 16,
             ),
@@ -129,5 +183,49 @@ class _RegisterPageState extends State<RegisterPage> {
         ),
       ))),
     );
+  }
+
+  void registerResponse() async {
+    try {
+      setState(() {
+        isloading = true;
+      });
+      await Future.delayed(const Duration(seconds: 3));
+      Response response;
+      response = await dio.post(register, data: {
+        "username": usernameController.text,
+        "full_name": fullnameController.text,
+        "email": emailController.text,
+        "no_telp": phoneController.text,
+        "password": passwordController.text
+      });
+      if (response.data['status'] == true) {
+        toastification.show(
+            context: context,
+            title: Text(response.data['msg']),
+            type: ToastificationType.success,
+            autoCloseDuration: Duration(seconds: 3),
+            style: ToastificationStyle.fillColored);
+        Navigator.pushNamed(context, LoginPage.routeName);
+      } else {
+        toastification.show(
+            context: context,
+            title: Text(response.data['msg']),
+            type: ToastificationType.error,
+            style: ToastificationStyle.fillColored);
+      }
+      ;
+    } catch (e) {
+      toastification.show(
+          context: context,
+          title: Text("Terjadi Kesalahan pada Server"),
+          type: ToastificationType.error,
+          autoCloseDuration: const Duration(seconds: 3),
+          style: ToastificationStyle.fillColored);
+    } finally {
+      setState(() {
+        isloading = false;
+      });
+    }
   }
 }
