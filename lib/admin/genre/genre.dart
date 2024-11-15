@@ -1,8 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:movie_apps/admin/genre/input_genre.dart';
+import 'package:movie_apps/admin/genre/update_genre.dart';
 import 'package:movie_apps/admin/home_admin.dart';
 import 'package:movie_apps/api_service/api.dart';
+import 'package:quickalert/quickalert.dart';
 import 'package:toastification/toastification.dart';
 
 class Genre extends StatefulWidget {
@@ -42,7 +45,9 @@ class _GenreState extends State<Genre> {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, InputGenre.routeName);
+            },
             icon: const Icon(Icons.add),
             color: Colors.white,
           )
@@ -69,14 +74,33 @@ class _GenreState extends State<Genre> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         IconButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.pushNamed(context, EditGenre.routeName,
+                                  arguments: genre);
+                            },
                             icon: const Icon(
                               Icons.edit,
                               color: Colors.black45,
                               size: 20,
                             )),
                         IconButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              QuickAlert.show(
+                                  context: context,
+                                  type: QuickAlertType.confirm,
+                                  title: 'Hapus Genre',
+                                  text:
+                                      'Yakin ingin menghapus genre ${genre['genre']} ?',
+                                  confirmBtnText:
+                                      isloading ? 'Mengapus Data...' : 'Hapus',
+                                  cancelBtnText: 'Batal',
+                                  confirmBtnColor: Colors.red,
+                                  onConfirmBtnTap: () {
+                                    deleteGenreResponse(genre['id_genre']);
+                                    Navigator.of(context).pop();
+                                  },
+                                  animType: QuickAlertAnimType.slideInDown);
+                            },
                             icon: const Icon(
                               Icons.delete,
                               color: Colors.black45,
@@ -104,6 +128,37 @@ class _GenreState extends State<Genre> {
         setState(() {
           isloading = false;
         });
+      }
+    } catch (e) {
+      toastification.show(
+          context: context,
+          title: Text('Server tidak merespon'),
+          type: ToastificationType.error,
+          autoCloseDuration: const Duration(seconds: 3),
+          style: ToastificationStyle.fillColored);
+    } finally {
+      setState(() {
+        isloading = false;
+      });
+    }
+  }
+
+  void deleteGenreResponse(int id) async {
+    try {
+      setState(() {
+        isloading = true;
+      });
+      Response response;
+      response = await dio.delete(hapusGenre + id.toString());
+      if (response.data['status'] == true) {
+        toastification.show(
+          context: context,
+          title: Text(response.data['msg']),
+          type: ToastificationType.success,
+          autoCloseDuration: const Duration(seconds: 3),
+          style: ToastificationStyle.fillColored,
+        );
+        Navigator.pushNamed(context, Genre.routeName);
       }
     } catch (e) {
       toastification.show(

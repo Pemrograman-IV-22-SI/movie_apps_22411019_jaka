@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movie_apps/admin/genre/genre.dart';
+import 'package:movie_apps/admin/genre/input_genre.dart';
+import 'package:movie_apps/admin/genre/update_genre.dart';
 import 'package:movie_apps/admin/home_admin.dart';
 import 'package:movie_apps/admin/movie_admin.dart';
 import 'package:movie_apps/admin/transaksi_admin.dart';
@@ -29,6 +31,8 @@ class MyApp extends StatelessWidget {
         HomeAdmin.routeName: (context) => const HomeAdmin(),
         HomeUsers.routeName: (context) => const HomeUsers(),
         Genre.routeName: (context) => const Genre(),
+        InputGenre.routeName: (context) => const InputGenre(),
+        EditGenre.routeName: (context) => const EditGenre(),
         TransaksiAdmin.routeName: (context) => const TransaksiAdmin(),
         MovieAdmin.routeName: (context) => const MovieAdmin()
       },
