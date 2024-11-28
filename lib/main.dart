@@ -3,7 +3,7 @@ import 'package:movie_apps/admin/genre/genre.dart';
 import 'package:movie_apps/admin/genre/input_genre.dart';
 import 'package:movie_apps/admin/genre/update_genre.dart';
 import 'package:movie_apps/admin/home_admin.dart';
-import 'package:movie_apps/admin/movie_admin.dart';
+import 'package:movie_apps/admin/movie/movie_admin.dart';
 import 'package:movie_apps/admin/transaksi_admin.dart';
 import 'package:movie_apps/auth/login_page.dart';
 import 'package:movie_apps/auth/register_page.dart';
