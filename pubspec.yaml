@@ -37,6 +37,8 @@ dependencies:
   dio: ^5.7.0
   toastification: ^2.3.0
   quickalert: ^1.1.0
+  dropdown_search: ^5.0.3
+  image_picker_for_web: ^3.0.6
 
 dev_dependencies:
   flutter_test:

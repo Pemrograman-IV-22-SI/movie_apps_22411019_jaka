@@ -1,13 +1,14 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_apps/admin/home_admin.dart';
+import 'package:movie_apps/admin/movie/input_movie.dart';
 import 'package:movie_apps/api_service/api.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:toastification/toastification.dart';
 
 class MovieAdmin extends StatefulWidget {
   const MovieAdmin({super.key});
-  static const routeName = '/movie_admin';
+  static const routeName = '/movie-admin';
 
   @override
   State<MovieAdmin> createState() => _MovieAdminState();
@@ -43,7 +44,15 @@ class _MovieAdminState extends State<MovieAdmin> {
                 Text("Movie", style: TextStyle(color: Colors.white)),
               ],
             ),
-            actions: []),
+            actions: [
+              IconButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, InputMovie.routeName);
+                },
+                icon: const Icon(Icons.add),
+                color: Colors.white,
+              )
+            ]),
         body: isLoading
             ? const Center(child: CircularProgressIndicator())
             : ListView.builder(

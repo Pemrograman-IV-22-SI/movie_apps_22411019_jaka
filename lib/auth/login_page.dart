@@ -8,7 +8,7 @@ import 'package:toastification/toastification.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
-  static String routeName = "/login_page";
+  static String routeName = "/login-page";
 
   @override
   State<LoginPage> createState() => _LoginPageState();

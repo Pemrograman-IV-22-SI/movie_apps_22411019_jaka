@@ -3,6 +3,7 @@ import 'package:movie_apps/admin/genre/genre.dart';
 import 'package:movie_apps/admin/genre/input_genre.dart';
 import 'package:movie_apps/admin/genre/update_genre.dart';
 import 'package:movie_apps/admin/home_admin.dart';
+import 'package:movie_apps/admin/movie/input_movie.dart';
 import 'package:movie_apps/admin/movie/movie_admin.dart';
 import 'package:movie_apps/admin/transaksi_admin.dart';
 import 'package:movie_apps/auth/login_page.dart';
@@ -34,7 +35,8 @@ class MyApp extends StatelessWidget {
         InputGenre.routeName: (context) => const InputGenre(),
         EditGenre.routeName: (context) => const EditGenre(),
         TransaksiAdmin.routeName: (context) => const TransaksiAdmin(),
-        MovieAdmin.routeName: (context) => const MovieAdmin()
+        MovieAdmin.routeName: (context) => const MovieAdmin(),
+        InputMovie.routeName: (context) => const InputMovie()
       },
     );
   }

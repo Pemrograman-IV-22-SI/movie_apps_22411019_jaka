@@ -7,7 +7,7 @@ import 'package:movie_apps/auth/login_page.dart';
 
 class HomeAdmin extends StatefulWidget {
   const HomeAdmin({super.key});
-  static const routeName = '/home_admin';
+  static const routeName = '/home-admin';
 
   @override
   State<HomeAdmin> createState() => _HomeAdminState();

@@ -1,8 +1,6 @@
-import 'package:movie_apps/admin/genre/genre.dart';
+String baseURL = "http://192.168.7.196:3000";
 
-String baseURL = "http://192.168.1.3:3000";
-
-String imageUrl = "$baseURL/img/movie";
+String imageUrl = "$baseURL/img/movie/";
 
 String register = "$baseURL/users/register";
 String login = "$baseURL/users/login";

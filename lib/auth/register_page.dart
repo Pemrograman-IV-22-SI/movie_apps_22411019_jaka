@@ -6,7 +6,7 @@ import 'package:toastification/toastification.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
-  static String routeName = "/register_page";
+  static String routeName = "/register-page";
 
   @override
   State<RegisterPage> createState() => _RegisterPageState();
