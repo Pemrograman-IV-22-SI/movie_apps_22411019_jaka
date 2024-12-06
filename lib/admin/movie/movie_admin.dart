@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_apps/admin/home_admin.dart';
 import 'package:movie_apps/admin/movie/input_movie.dart';
+import 'package:movie_apps/admin/movie/update_movie.dart';
 import 'package:movie_apps/api_service/api.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:toastification/toastification.dart';
@@ -163,7 +164,11 @@ class _MovieAdminState extends State<MovieAdmin> {
                                       width: 2,
                                     ),
                                     IconButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        Navigator.pushNamed(
+                                            context, UpdateMovie.routeName,
+                                            arguments: movie);
+                                      },
                                       icon: const Icon(
                                         Icons.edit,
                                         color: Colors.yellow,
