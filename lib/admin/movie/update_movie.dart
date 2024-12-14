@@ -5,7 +5,9 @@ import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:movie_apps/admin/model/genre_model.dart';
+import 'package:movie_apps/admin/movie/movie_admin.dart';
 import 'package:movie_apps/api_service/api.dart';
+import 'package:toastification/toastification.dart';
 
 class UpdateMovie extends StatefulWidget {
   const UpdateMovie({super.key});
@@ -254,3 +256,50 @@ class _UpdateMovieState extends State<UpdateMovie> {
     );
   }
 }
+//   void editResponse(int id, genre) async {
+//     try {
+//       setState(() {
+//         isloading = true;
+//       });
+//       await Future.delayed(const Duration(seconds: 2));
+//       FormData formData = FormData.fromMap({
+//         'image': MultipartFile.fromBytes(_imageBytes!, filename: 'bebas.jpg'),
+//         "tittle": tittleController.text,
+//         "price": priceController.text,
+//         "id_genre": id_genre.toString(),
+//         "rating": ratingController.text,
+//         "description": descriptionController.text
+//       });
+//       Response response;
+//       response =
+//           response = await dio.post(editMovie + id.toString(), data: formData);
+//       if (response.data['status'] == true) {
+//         toastification.show(
+//             context: context,
+//             title: Text(response.data['msg']),
+//             type: ToastificationType.success,
+//             autoCloseDuration: Duration(seconds: 3),
+//             style: ToastificationStyle.fillColored);
+//         Navigator.pushNamed(context, MovieAdmin.routeName);
+//       } else {
+//         toastification.show(
+//             context: context,
+//             title: Text(response.data['msg']),
+//             type: ToastificationType.error,
+//             style: ToastificationStyle.fillColored);
+//       }
+//       ;
+//     } catch (e) {
+//       toastification.show(
+//           context: context,
+//           title: Text("Terjadi Kesalahan pada Server"),
+//           type: ToastificationType.error,
+//           autoCloseDuration: const Duration(seconds: 3),
+//           style: ToastificationStyle.fillColored);
+//     } finally {
+//       setState(() {
+//         isloading = false;
+//       });
+//     }
+//   }
+// }

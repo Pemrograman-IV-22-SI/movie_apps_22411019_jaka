@@ -9,7 +9,9 @@ import 'package:movie_apps/admin/movie/update_movie.dart';
 import 'package:movie_apps/admin/transaksi_admin.dart';
 import 'package:movie_apps/auth/login_page.dart';
 import 'package:movie_apps/auth/register_page.dart';
+import 'package:movie_apps/users/beli_movie.dart';
 import 'package:movie_apps/users/home_user.dart';
+import 'package:movie_apps/users/transaksi.dart';
 
 void main() {
   runApp(const MyApp());
@@ -38,7 +40,9 @@ class MyApp extends StatelessWidget {
         TransaksiAdmin.routeName: (context) => const TransaksiAdmin(),
         MovieAdmin.routeName: (context) => const MovieAdmin(),
         InputMovie.routeName: (context) => const InputMovie(),
-        UpdateMovie.routeName: (context) => const UpdateMovie()
+        UpdateMovie.routeName: (context) => const UpdateMovie(),
+        BeliMovie.routeName: (context) => const BeliMovie(),
+        Transaksi.routeName: (context) => const Transaksi()
       },
     );
   }
