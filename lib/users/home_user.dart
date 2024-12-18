@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:movie_apps/api_service/api.dart';
 import 'package:movie_apps/users/beli_movie.dart';
 import 'package:movie_apps/users/transaksi.dart';
-import 'package:quickalert/quickalert.dart';
 import 'package:toastification/toastification.dart';
 
 class HomeUsers extends StatefulWidget {
@@ -27,7 +26,7 @@ class _HomeUsersState extends State<HomeUsers> {
   var user = {};
   @override
   Widget build(BuildContext context) {
-    final args = ModalRoute.of(context)!.settings.arguments as Map;
+    final args = ModalRoute.of(context)?.settings.arguments as Map? ?? {};
 
     return Scaffold(
         appBar: AppBar(

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:movie_apps/admin/genre/genre.dart';
 import 'package:movie_apps/admin/movie/movie_admin.dart';
-import 'package:movie_apps/admin/transaksi_admin.dart';
+import 'package:movie_apps/admin/transaksi/transaksi_admin.dart';
 import 'package:movie_apps/auth/login_page.dart';
 
 class HomeAdmin extends StatefulWidget {

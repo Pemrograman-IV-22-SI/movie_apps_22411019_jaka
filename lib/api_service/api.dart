@@ -17,3 +17,4 @@ String editMovie = "$baseURL/movie/edit/";
 
 String insertTransaksi = "$baseURL/transaction/insert";
 String getAllTransaksi = "$baseURL/transaction/get";
+String confirmTranskasi = "$baseURL/transaction//confirm-transaction/";

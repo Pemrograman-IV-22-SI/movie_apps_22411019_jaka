@@ -1,10 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:movie_apps/admin/home_admin.dart';
 import 'package:movie_apps/api_service/api.dart';
 import 'package:movie_apps/users/home_user.dart';
-import 'package:quickalert/quickalert.dart';
 import 'package:toastification/toastification.dart';
 
 class Transaksi extends StatefulWidget {
